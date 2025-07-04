@@ -15,10 +15,10 @@ class StudyInfo(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
 
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"))
-    study_direction_id: Mapped[int] = mapped_column(ForeignKey("study_directions.id", ondelete="SET NULL"), nullable=True)
-    study_form_id: Mapped[int] = mapped_column(ForeignKey("study_forms.id", ondelete="SET NULL"), nullable=True)
-    study_language_id: Mapped[int] = mapped_column(ForeignKey("study_languages.id", ondelete="SET NULL"), nullable=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    study_direction_id: Mapped[int] = mapped_column(ForeignKey("study_directions.id"), nullable=True)
+    study_form_id: Mapped[int] = mapped_column(ForeignKey("study_forms.id"), nullable=True)
+    study_language_id: Mapped[int] = mapped_column(ForeignKey("study_languages.id"), nullable=True)
 
     # Relationships
     user: Mapped["User"] = relationship("User", back_populates="study_info")
