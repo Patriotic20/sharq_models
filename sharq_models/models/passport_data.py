@@ -1,4 +1,4 @@
-from db import Base
+from sharq_models.db import Base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import ForeignKey, String, Date
 from datetime import date as py_date

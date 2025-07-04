@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from typing import TYPE_CHECKING
-from db import Base
+from sharq_models.db import Base
 
 # --- User ---
 if TYPE_CHECKING:

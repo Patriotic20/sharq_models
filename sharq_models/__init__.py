@@ -10,7 +10,7 @@ __all__ = (
 
 
 
-from models import (
+from .models import (
     StudyDirection,
     StudyLanguage,
     StudyForm,
