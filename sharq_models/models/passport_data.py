@@ -8,19 +8,22 @@ if TYPE_CHECKING:
     from .user import User
     from .application import Application
 
+
 class PassportData(Base):
     __tablename__ = "passport_data"
 
     id: Mapped[int] = mapped_column(primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
-    passport_series_number: Mapped[str] = mapped_column(String(20))
-    issue_date: Mapped[py_date] = mapped_column(Date)
-    issuing_authority: Mapped[str] = mapped_column(String(100))
-    authority_code: Mapped[str] = mapped_column(String(10))
-    place_of_birth: Mapped[str] = mapped_column(String(150))
+
+    first_name: Mapped[str] = mapped_column(String(50))
+    last_name: Mapped[str] = mapped_column(String(50))
+    third_name: Mapped[str] = mapped_column(String(50))
     date_of_birth: Mapped[py_date] = mapped_column(Date)
+    passport_series_number: Mapped[str] = mapped_column(String(20))
+    jshshir: Mapped[str] = mapped_column(String(20))
+    issue_date: Mapped[py_date] = mapped_column(Date)
     gender: Mapped[str] = mapped_column(String(10))
-    nationality: Mapped[str] = mapped_column(String(50))
+    passport_photo: Mapped[str] 
 
     user: Mapped["User"] = relationship("User", back_populates="passport_data")
     application: Mapped["Application"] = relationship("Application", back_populates="passport_data", uselist=False)
@@ -34,6 +37,6 @@ class PassportData(Base):
     def __str__(self):
         return (
             f"PassportData for User {self.user_id}: "
-            f"{self.passport_series_number}, Issued: {self.issue_date}, "
-            f"Authority: {self.issuing_authority}"
+            f"{self.passport_series_number}, Issued: {self.issue_date}"
         )
+
