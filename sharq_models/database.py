@@ -1,8 +1,15 @@
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
-from .config import settings
+from sqlalchemy.orm import declarative_base
+import os
+from dotenv import load_dotenv
 
-engine = create_async_engine(settings.connection_string, echo=True)
+load_dotenv()
+
+engine = create_async_engine(
+    f"postgresql+asyncpg://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}",
+    echo=True,
+)
 
 
 AsyncSessionLocal = sessionmaker(
@@ -16,3 +23,7 @@ async def get_db():
         yield session
     finally:
         await session.close()
+
+Base = declarative_base()
+
+
