@@ -25,7 +25,7 @@ class User(Base):
     study_info: Mapped["StudyInfo"] = relationship(
         "StudyInfo", back_populates="user", uselist=False, cascade="all, delete-orphan"
     )
-    sms_verification_sessions: Mapped[list["SMSVerificationSession"]] = relationship("SMSVerificationSession", back_populates="user")
+    
     def __repr__(self):
         return f"<User(id={self.id}, phone_number='{self.phone_number}')>"
 
@@ -58,6 +58,13 @@ class SMSVerificationSession(Base):
     expires_at: Mapped[datetime] = mapped_column(nullable=False)
     verified: Mapped[bool] = mapped_column(default=False, nullable=False)
     attempts: Mapped[int] = mapped_column(default=0, nullable=False)
+    
+    
+    def __repr__(self):
+        return f"<SMSVerificationSession(id={self.id}, phone_number='{self.phone_number}')>"
+    
+    def __str__(self):
+        return f"SMSVerificationSession {self.id} - Phone: {self.phone_number}"
     
     def is_expired(self) -> bool:
         return datetime.now(timezone.utc) > self.expires_at
