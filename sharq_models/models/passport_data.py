@@ -23,7 +23,7 @@ class PassportData(Base):
     jshshir: Mapped[str] = mapped_column(String(20))
     issue_date: Mapped[py_date] = mapped_column(Date)
     gender: Mapped[str] = mapped_column(String(10))
-    passport_photo: Mapped[str] 
+    passport_filepath: Mapped[str] 
 
     user: Mapped["User"] = relationship("User", back_populates="passport_data")
     application: Mapped["Application"] = relationship("Application", back_populates="passport_data", uselist=False)
