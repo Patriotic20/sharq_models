@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import JSON
+from sharq_models.models.user import User
 from sharq_models.database import Base
 
 
@@ -8,6 +9,10 @@ class AMOCrmLead(Base):
     __tablename__ = "amo_crm_leads"
     
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
+    
+    user_id: Mapped[int] = mapped_column(nullable=False, index=True)
+    user: Mapped["User"] = relationship("User", back_populates="amo_crm_leads")
+    
     contact_id: Mapped[int] = mapped_column(nullable=False, index=True)
     lead_id: Mapped[int] = mapped_column(nullable=False, index=True)
     
