@@ -72,4 +72,3 @@ class SMSVerificationSession(Base):
     def is_valid(self) -> bool:
         return not self.is_expired() and not self.verified 
     
-    

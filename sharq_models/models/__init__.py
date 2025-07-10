@@ -6,6 +6,7 @@ __all__ = (
     "PassportData",
     "StudyInfo",
     "Application",
+    "AMOCrmLead",
 )
 
 
@@ -16,5 +17,5 @@ from .user import User
 from .passport_data import PassportData
 from .study_info import StudyInfo
 from .application import Application
-
+from .crm import AMOCrmLead
 
