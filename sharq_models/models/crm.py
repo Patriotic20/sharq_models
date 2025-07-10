@@ -11,7 +11,6 @@ class AMOCrmLead(Base):
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     
     user_id: Mapped[int] = mapped_column(nullable=False, index=True)
-    user: Mapped["User"] = relationship("User", back_populates="amo_crm_leads")
     
     contact_id: Mapped[int] = mapped_column(nullable=False, index=True)
     lead_id: Mapped[int] = mapped_column(nullable=False, index=True)
