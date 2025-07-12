@@ -20,9 +20,20 @@ services:
       - sharq_network
     restart: unless-stopped
 
+  apply-migrations:
+    image: python:3.12-slim
+    volumes:
+      - .:/app
+      - pip_cache:/root/.cache/pip
+    working_dir: /app
+    command: ["sh", "-c", "pip install -e . && alembic upgrade head"]
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env
+    restart: "no"
+
 volumes:
   postgres_data:
-
-networks:
-  sharq_network:
-    external: true
+  pip_cache:
