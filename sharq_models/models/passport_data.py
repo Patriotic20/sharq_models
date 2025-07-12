@@ -1,6 +1,6 @@
 from sharq_models.database import Base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import ForeignKey
+from sqlalchemy import ForeignKey, String
 from datetime import date as py_date
 from typing import TYPE_CHECKING
 
@@ -32,7 +32,8 @@ class PassportData(Base):
     country: Mapped[str] 
     region: Mapped[str] 
     district: Mapped[str] 
-    address: Mapped[str] 
+    address: Mapped[str]
+    image_path: Mapped[str] = mapped_column(String(255), nullable=True)
     
 
     
