@@ -24,7 +24,7 @@ class PassportData(Base):
     jshshir: Mapped[str] 
     issue_date: Mapped[py_date]
     gender: Mapped[str] 
-    passport_filepath: Mapped[str]
+    passport_expire_date: Mapped[py_date]
 
     # Additional fields from PersonalInfo
     citizenship: Mapped[str] 
