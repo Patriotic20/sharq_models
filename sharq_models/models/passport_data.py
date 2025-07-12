@@ -1,6 +1,6 @@
 from sharq_models.database import Base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import ForeignKey, String, Date
+from sqlalchemy import ForeignKey
 from datetime import date as py_date
 from typing import TYPE_CHECKING
 
@@ -13,18 +13,29 @@ class PassportData(Base):
     __tablename__ = "passport_data"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
 
-    first_name: Mapped[str] = mapped_column(String(50))
-    last_name: Mapped[str] = mapped_column(String(50))
-    third_name: Mapped[str] = mapped_column(String(50))
-    date_of_birth: Mapped[py_date] = mapped_column(Date)
-    passport_series_number: Mapped[str] = mapped_column(String(20))
-    jshshir: Mapped[str] = mapped_column(String(20))
-    issue_date: Mapped[py_date] = mapped_column(Date)
-    gender: Mapped[str] = mapped_column(String(10))
-    passport_filepath: Mapped[str] 
+    # From PersonalInfo
+    first_name: Mapped[str] 
+    last_name: Mapped[str] 
+    third_name: Mapped[str]   # fatherName
+    date_of_birth: Mapped[py_date]   # birthDate
+    passport_series_number: Mapped[str] 
+    jshshir: Mapped[str] 
+    issue_date: Mapped[py_date]
+    gender: Mapped[str] 
+    passport_filepath: Mapped[str]
 
+    # Additional fields from PersonalInfo
+    citizenship: Mapped[str] 
+    nationality: Mapped[str] 
+    country: Mapped[str] 
+    region: Mapped[str] 
+    district: Mapped[str] 
+    address: Mapped[str] 
+    
+
+    
     user: Mapped["User"] = relationship("User", back_populates="passport_data")
     application: Mapped["Application"] = relationship("Application", back_populates="passport_data", uselist=False)
 
@@ -39,4 +50,3 @@ class PassportData(Base):
             f"PassportData for User {self.user_id}: "
             f"{self.passport_series_number}, Issued: {self.issue_date}"
         )
-
