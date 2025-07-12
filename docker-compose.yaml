@@ -25,4 +25,4 @@ volumes:
 
 networks:
   sharq_network:
-    driver: bridge
+    external: true
