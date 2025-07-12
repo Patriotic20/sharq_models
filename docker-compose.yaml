@@ -16,8 +16,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - sharq_network
     restart: unless-stopped
 
   apply-migrations:
