@@ -32,7 +32,6 @@ def upgrade() -> None:
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )
-    op.drop_column('passport_data', 'photo')
     op.add_column('study_info', sa.Column('education_type_id', sa.Integer(), nullable=True))
     op.add_column('study_info', sa.Column('study_type_id', sa.Integer(), nullable=True))
     op.add_column('study_info', sa.Column('graduate_year', sa.String(), nullable=False))
@@ -52,7 +51,6 @@ def downgrade() -> None:
     op.drop_column('study_info', 'graduate_year')
     op.drop_column('study_info', 'study_type_id')
     op.drop_column('study_info', 'education_type_id')
-    op.add_column('passport_data', sa.Column('photo', sa.VARCHAR(), autoincrement=False, nullable=False))
     op.drop_table('study_types')
     op.drop_table('education_types')
     # ### end Alembic commands ###

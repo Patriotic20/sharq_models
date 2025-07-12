@@ -1,3 +1,4 @@
+from sqlalchemy import String
 from sharq_models.database import Base
 from sqlalchemy.orm import Mapped, mapped_column , relationship
 from typing import TYPE_CHECKING
@@ -6,10 +7,19 @@ if TYPE_CHECKING:
     from models.study_info import StudyInfo
 
 class StudyForm(Base):
+    """
+    Examples:
+        - Kunduzgi
+        - Kechki
+        - Masofaviy
+        - Sirtqi
+    """
     __tablename__ = "study_forms"
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(nullable=False, unique=True)
+    
+    status: Mapped[str] = mapped_column(String(50), nullable=False, default="inactive")
 
     study_infos: Mapped[list["StudyInfo"]] = relationship("StudyInfo", back_populates="study_form")
 
