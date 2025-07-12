@@ -11,3 +11,4 @@ alembic/
 # Virtual environments
 .venv
 .env
+prod.env
