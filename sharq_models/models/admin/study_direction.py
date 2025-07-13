@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Mapped, mapped_column , relationship
-from sqlalchemy import String, ARRAY, Integer, Numeric, ForeignKey
+from sqlalchemy import String,  Integer, Numeric, ForeignKey
 from sharq_models.database import Base
 from typing import TYPE_CHECKING
 
@@ -33,8 +33,11 @@ class StudyDirection(Base):
     study_language: Mapped["StudyLanguage"] = relationship("StudyLanguage", back_populates="study_directions")
     study_type: Mapped["StudyType"] = relationship("StudyType", back_populates="study_directions")
     education_type: Mapped["EducationType"] = relationship("EducationType", back_populates="study_directions")
+    
+    
+    
+    study_infos: Mapped["StudyInfo"] = relationship("StudyInfo" , back_populates="study_direction")
 
-    study_infos: Mapped[list["StudyInfo"]] = relationship("StudyInfo", back_populates="study_direction")
 
     def __repr__(self):
         return (

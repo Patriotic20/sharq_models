@@ -29,11 +29,13 @@ class StudyInfo(Base):
 
     # Relationships
     user: Mapped["User"] = relationship("User", back_populates="study_info")
+    
     study_direction: Mapped["StudyDirection"] = relationship("StudyDirection", back_populates="study_infos")
     study_form: Mapped["StudyForm"] = relationship("StudyForm", back_populates="study_infos")
     study_type: Mapped["StudyType"] = relationship("StudyType" , back_populates="study_infos")
     education_type: Mapped["EducationType"] = relationship("EducationType" , back_populates="study_infos")
     study_language: Mapped["StudyLanguage"] = relationship("StudyLanguage", back_populates="study_infos")
+    
     application: Mapped["Application"] = relationship("Application", back_populates="study_info", uselist=False)
 
     def __repr__(self):
