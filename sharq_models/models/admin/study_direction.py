@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Mapped, mapped_column , relationship
 from sqlalchemy import String,  Integer, Numeric
 from sharq_models.database import Base
+from sharq_models.models.study_info import StudyInfo
 
 
 
@@ -17,6 +18,8 @@ class StudyDirection(Base):
     study_code: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
     
     status: Mapped[str] = mapped_column(String(50), nullable=False, default="inactive")
+    
+    study_infos: Mapped[list["StudyInfo"]] = relationship("StudyInfo", back_populates="study_direction")
     
     def __repr__(self):
         return (
