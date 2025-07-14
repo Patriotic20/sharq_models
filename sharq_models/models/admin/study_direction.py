@@ -1,12 +1,8 @@
 from sqlalchemy.orm import Mapped, mapped_column , relationship
 from sqlalchemy import String,  Integer, Numeric
 from sharq_models.database import Base
-from typing import TYPE_CHECKING
 
 
-
-if TYPE_CHECKING:
-    from models.study_info import StudyInfo
 
 class StudyDirection(Base):
     __tablename__ = "study_directions"
@@ -22,9 +18,6 @@ class StudyDirection(Base):
     
     status: Mapped[str] = mapped_column(String(50), nullable=False, default="inactive")
     
-    study_infos: Mapped["StudyInfo"] = relationship("StudyInfo" , back_populates="study_direction")
-
-
     def __repr__(self):
         return (
             f"<StudyDirection(id={self.id}, name='{self.name}', study_form='{self.study_form}', "
