@@ -12,7 +12,6 @@ class StudyLanguage(Base):
     name: Mapped[str] = mapped_column(nullable=False, unique=True)
 
     study_infos: Mapped[list["StudyInfo"]] = relationship("StudyInfo", back_populates="study_language")
-    study_directions: Mapped[list["StudyDirection"]] = relationship("StudyDirection" , back_populates="study_language")
 
     def __repr__(self):
         return f"<StudyLanguage(id={self.id}, name='{self.name}')>"

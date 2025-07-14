@@ -24,7 +24,6 @@ class StudyType(Base):
     status: Mapped[str] = mapped_column(String(50), nullable=False, default="inactive")
 
     study_infos: Mapped[list["StudyInfo"]] = relationship("StudyInfo", back_populates="study_type")
-    study_directions: Mapped[list["StudyDirection"]] = relationship("StudyDirection" , back_populates="study_type")
 
     def __repr__(self):
         return f"<StudyType(id={self.id}, name='{self.name}')>"
