@@ -1,7 +1,6 @@
 from datetime import datetime, timezone
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import JSON, DateTime
-from sharq_models.models.user import User
 from sharq_models.database import Base
 
 

@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from models.study_info import StudyInfo
-    from models.admin.study_direction import StudyDirection
+
     
 class StudyType(Base):
     """
