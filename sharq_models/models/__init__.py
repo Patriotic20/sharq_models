@@ -9,6 +9,7 @@ __all__ = (
     "AMOCrmLead",
     "EducationType",
     "StudyType",
+    "Contract",
 )
 
 
@@ -22,4 +23,4 @@ from .application import Application
 from .admin.study_type import StudyType
 from .crm import AMOCrmLead
 from .admin.education_type import EducationType
-
+from .contract import Contract

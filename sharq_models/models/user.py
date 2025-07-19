@@ -8,6 +8,7 @@ from sharq_models.database import Base
 if TYPE_CHECKING:
     from .passport_data import PassportData
     from .study_info import StudyInfo
+    from .contract import Contract
 
 class User(Base):
     __tablename__ = "users"
@@ -24,6 +25,10 @@ class User(Base):
     )
     study_info: Mapped["StudyInfo"] = relationship(
         "StudyInfo", back_populates="user", uselist=False, cascade="all, delete-orphan"
+    )
+    
+    contracts: Mapped["Contract"] = relationship(
+        "Contract" , back_populates="user"
     )
     
     def __repr__(self):
