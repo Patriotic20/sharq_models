@@ -12,7 +12,6 @@ class Contract(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     file_path: Mapped[str] = mapped_column(nullable=True)
-    edu_course_level: Mapped[int] = mapped_column(nullable=True)
     status: Mapped[bool] = mapped_column(default=False, server_default="false")
     
     user: Mapped["User"] = relationship("User", back_populates="contracts")
