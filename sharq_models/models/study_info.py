@@ -42,6 +42,8 @@ class StudyInfo(Base):
     user: Mapped["User"] = relationship("User", back_populates="study_info")
     application: Mapped["Application"] = relationship("Application", back_populates="study_info", uselist=False)
     
+    promo_code: Mapped[str] = mapped_column(String(255), nullable=True)
+    
     def __repr__(self):
         return (
             f"<StudyInfo(id={self.id}, user_id={self.user_id}, "
