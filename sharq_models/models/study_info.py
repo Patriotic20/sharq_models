@@ -20,6 +20,8 @@ class StudyInfo(Base):
 
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     
+    is_approved: Mapped[bool] = mapped_column(default=False , server_default="false")
+    
     study_direction_id: Mapped[int] = mapped_column(ForeignKey("study_directions.id"), nullable=True)
     study_direction: Mapped["StudyDirection"] = relationship("StudyDirection", back_populates="study_infos")
     
