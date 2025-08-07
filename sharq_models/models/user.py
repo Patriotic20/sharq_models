@@ -23,7 +23,7 @@ class User(Base):
     passport_data: Mapped["PassportData"] = relationship(
         "PassportData", back_populates="user", uselist=False, cascade="all, delete-orphan"
     )
-    study_info: Mapped[list["StudyInfo"]] = relationship(
+    study_info: Mapped["StudyInfo"] = relationship(
         "StudyInfo", back_populates="user", cascade="all, delete-orphan"
     )
     
