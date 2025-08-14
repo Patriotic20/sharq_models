@@ -1,7 +1,8 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import ForeignKey, String
+from sqlalchemy import ForeignKey, String , Date , func
 from sharq_models.database import Base
 from typing import TYPE_CHECKING
+from datetime import date
 
 from sharq_models.models.application import Application
 from sharq_models.models.user import User
@@ -45,6 +46,7 @@ class StudyInfo(Base):
     application: Mapped["Application"] = relationship("Application", back_populates="study_info", uselist=False)
     
     promo_code: Mapped[str] = mapped_column(String(255), nullable=True)
+    create_at: Mapped[date] = mapped_column(Date , server_default=func.current_date())
     
     def __repr__(self):
         return (

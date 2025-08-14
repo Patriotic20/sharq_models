@@ -1,7 +1,8 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import ForeignKey
-from sharq_models.database import Base
+from sqlalchemy import ForeignKey 
+from sharq_models.database import Base 
 from typing import TYPE_CHECKING
+
 
 if TYPE_CHECKING:
     from .study_info import StudyInfo
@@ -13,6 +14,8 @@ class Application(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     study_info_id: Mapped[int] = mapped_column(ForeignKey("study_info.id"), nullable=False)
     passport_data_id: Mapped[int] = mapped_column(ForeignKey("passport_data.id"), nullable=False)
+
+    
 
     study_info: Mapped["StudyInfo"] = relationship("StudyInfo", back_populates="application")
     passport_data: Mapped["PassportData"] = relationship("PassportData", back_populates="application")
