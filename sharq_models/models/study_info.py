@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import ForeignKey, String , Date , func
+from sqlalchemy import ForeignKey, String , DateTime , func
 from sharq_models.database import Base
 from typing import TYPE_CHECKING
 from datetime import date
@@ -46,7 +46,7 @@ class StudyInfo(Base):
     application: Mapped["Application"] = relationship("Application", back_populates="study_info", uselist=False)
     
     promo_code: Mapped[str] = mapped_column(String(255), nullable=True)
-    create_at: Mapped[date] = mapped_column(Date , server_default=func.current_date())
+    create_at: Mapped[date] = mapped_column( DateTime(timezone=True) , server_default=func.now())
     
     def __repr__(self):
         return (
