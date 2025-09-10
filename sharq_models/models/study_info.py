@@ -2,7 +2,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import ForeignKey, String , DateTime , func
 from sharq_models.database import Base
 from typing import TYPE_CHECKING
-from datetime import date
+from datetime import date , datetime
 
 from sharq_models.models.application import Application
 from sharq_models.models.user import User
@@ -13,6 +13,11 @@ if TYPE_CHECKING:
     from .admin.study_direction import StudyDirection
     from .admin.education_type import EducationType
     from .admin.study_type import StudyType
+
+    
+def now_without_microseconds():
+    return datetime.now().replace(microsecond=0)
+
 
 class StudyInfo(Base):
     __tablename__ = "study_info"
@@ -46,7 +51,10 @@ class StudyInfo(Base):
     application: Mapped["Application"] = relationship("Application", back_populates="study_info", uselist=False)
     
     promo_code: Mapped[str] = mapped_column(String(255), nullable=True)
-    create_at: Mapped[date] = mapped_column( DateTime(timezone=True) , server_default=func.now())
+    create_at: Mapped[date] = mapped_column(DateTime , default=now_without_microseconds)
+    
+    
+    
     
     def __repr__(self):
         return (
@@ -62,5 +70,4 @@ class StudyInfo(Base):
             f"Form: {self.study_form.name if self.study_form else 'N/A'}, "
             f"Language: {self.study_language.name if self.study_language else 'N/A'}"
         )
-    
     
